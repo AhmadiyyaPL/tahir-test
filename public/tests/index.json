@@ -1,0 +1,21 @@
+{
+  "generated": "tools/validate.js — nicht von Hand bearbeiten",
+  "tests": [
+    {
+      "id": "czesc-1",
+      "file": "czesc-1.json",
+      "title": {
+        "pl": "Test — część I",
+        "en": "Test — Part I"
+      },
+      "items": 35,
+      "sections": 4,
+      "pointsMax": 40,
+      "manualMax": 4,
+      "subtitle": {
+        "pl": "Tahir Academy · Poziom 2",
+        "en": "Tahir Academy · Level 2"
+      }
+    }
+  ]
+}

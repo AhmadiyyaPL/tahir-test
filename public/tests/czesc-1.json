@@ -1,0 +1,1104 @@
+{
+  "meta": {
+    "id": "czesc-1",
+    "pointsMax": 40,
+    "title": {
+      "pl": "Test — część I",
+      "en": "Test — Part I"
+    },
+    "subtitle": {
+      "pl": "Tahir Academy · Poziom 2",
+      "en": "Tahir Academy · Level 2"
+    }
+  },
+  "sections": [
+    {
+      "id": 0,
+      "pl": "Święty Koran",
+      "en": "The Holy Qur'an"
+    },
+    {
+      "id": 1,
+      "pl": "Salat i modlitwy",
+      "en": "Salat and Prayers"
+    },
+    {
+      "id": 2,
+      "pl": "Podstawy Islamu",
+      "en": "Basics of Islam"
+    },
+    {
+      "id": 3,
+      "pl": "Historia Islamu",
+      "en": "History of Islam"
+    }
+  ],
+  "items": [
+    {
+      "n": 1,
+      "section": 0,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Co znaczy słowo „Koran”?",
+        "en": "What does the word “Qur'an” mean?"
+      },
+      "options": [
+        {
+          "pl": "Święta księga Boga",
+          "en": "God's holy book"
+        },
+        {
+          "pl": "Często czytany lub recytowany",
+          "en": "Often read or recited"
+        },
+        {
+          "pl": "Światło świata",
+          "en": "The light of the world"
+        },
+        {
+          "pl": "Księga modlitw",
+          "en": "The book of prayers"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 2,
+      "section": 0,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Jak długo trwało objawianie Koranu?",
+        "en": "Over how long was the Holy Qur'an revealed?"
+      },
+      "options": [
+        {
+          "pl": "10 lat",
+          "en": "10 years"
+        },
+        {
+          "pl": "32 lata",
+          "en": "32 years"
+        },
+        {
+          "pl": "22 lata i 5 miesięcy",
+          "en": "22 years and 5 months"
+        },
+        {
+          "pl": "40 lat",
+          "en": "40 years"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 3,
+      "section": 0,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Gdzie Święty Prorok (sa) otrzymał pierwsze objawienie?",
+        "en": "Where did the Holy Prophet (sa) receive the first revelation?"
+      },
+      "options": [
+        {
+          "pl": "W jaskini Hira",
+          "en": "In the cave of Hira"
+        },
+        {
+          "pl": "W Medynie",
+          "en": "In Medina"
+        },
+        {
+          "pl": "Wewnątrz Ka'by",
+          "en": "Inside the Ka'bah"
+        },
+        {
+          "pl": "W Jerozolimie",
+          "en": "In Jerusalem"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "n": 4,
+      "section": 0,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Kto przyniósł Prorokowi (sa) pierwsze objawienie?",
+        "en": "Who brought the first revelation to the Holy Prophet (sa)?"
+      },
+      "options": [
+        {
+          "pl": "Anioł Mikail",
+          "en": "Angel Mikail"
+        },
+        {
+          "pl": "Hadrat Abu Bakr (ra)",
+          "en": "Hadrat Abu Bakr (ra)"
+        },
+        {
+          "pl": "Hadrat Ibrahim (as)",
+          "en": "Hadrat Ibrahim (as)"
+        },
+        {
+          "pl": "Anioł Dżibril",
+          "en": "Angel Jibril"
+        }
+      ],
+      "correct": 3
+    },
+    {
+      "n": 5,
+      "section": 0,
+      "type": "fill",
+      "points": 1,
+      "prompt": {
+        "pl": "Ile części (dżuz) ma Koran?",
+        "en": "How many parts (juz) does the Holy Qur'an have?"
+      },
+      "accept": [
+        "30"
+      ],
+      "unit": {
+        "pl": "części",
+        "en": "parts"
+      }
+    },
+    {
+      "n": 6,
+      "section": 0,
+      "type": "fill",
+      "points": 1,
+      "prompt": {
+        "pl": "Ile rozdziałów (sur) ma Koran?",
+        "en": "How many chapters (surahs) does the Holy Qur'an have?"
+      },
+      "accept": [
+        "114"
+      ],
+      "unit": {
+        "pl": "sur",
+        "en": "surahs"
+      }
+    },
+    {
+      "n": 7,
+      "section": 0,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Na czym zapisywano wersety Koranu za życia Proroka (sa)?",
+        "en": "What were the verses written on during the life of the Holy Prophet (sa)?"
+      },
+      "options": [
+        {
+          "pl": "Na papierze z Egiptu",
+          "en": "On paper from Egypt"
+        },
+        {
+          "pl": "Na skórze, korze drzew i kamieniach",
+          "en": "On leather, tree bark and stones"
+        },
+        {
+          "pl": "W drukowanych książkach",
+          "en": "In printed books"
+        },
+        {
+          "pl": "Nigdzie — tylko zapamiętywano",
+          "en": "Nowhere — it was only memorised"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 8,
+      "section": 0,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Jak nazywamy osobę, która zna cały Koran na pamięć?",
+        "en": "What do we call a person who knows the whole Qur'an by heart?"
+      },
+      "options": [
+        {
+          "pl": "Imam",
+          "en": "Imam"
+        },
+        {
+          "pl": "Murabbi",
+          "en": "Murabbi"
+        },
+        {
+          "pl": "Hafiz-ul-Qur'an",
+          "en": "Hafiz-ul-Qur'an"
+        },
+        {
+          "pl": "Khalifa",
+          "en": "Khalifa"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 9,
+      "section": 1,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Ile jest rodzajów modlitw?",
+        "en": "How many kinds of prayers are there?"
+      },
+      "options": [
+        {
+          "pl": "Trzy",
+          "en": "Three"
+        },
+        {
+          "pl": "Cztery",
+          "en": "Four"
+        },
+        {
+          "pl": "Pięć",
+          "en": "Five"
+        },
+        {
+          "pl": "Dwa",
+          "en": "Two"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 10,
+      "section": 1,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Modlitwa Witr i modlitwy Eid to modlitwy…",
+        "en": "The Witr prayer and the Eid prayers are…"
+      },
+      "options": [
+        {
+          "pl": "Nafl",
+          "en": "Nafl"
+        },
+        {
+          "pl": "Sunnah",
+          "en": "Sunnah"
+        },
+        {
+          "pl": "Fard",
+          "en": "Fard"
+        },
+        {
+          "pl": "Waajib",
+          "en": "Waajib"
+        }
+      ],
+      "correct": 3
+    },
+    {
+      "n": 11,
+      "section": 1,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Tahadżdżud to modlitwa…",
+        "en": "Tahajjud is a … prayer"
+      },
+      "options": [
+        {
+          "pl": "Nafl — dobrowolna",
+          "en": "Nafl — voluntary"
+        },
+        {
+          "pl": "Fard — obowiązkowa",
+          "en": "Fard — obligatory"
+        },
+        {
+          "pl": "Waajib — konieczna",
+          "en": "Waajib — necessary"
+        },
+        {
+          "pl": "Sunnah",
+          "en": "Sunnah"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "n": 12,
+      "section": 1,
+      "type": "table",
+      "points": 5,
+      "prompt": {
+        "pl": "Uzupełnij tabelę rakaatów",
+        "en": "Fill in the rak'ah table"
+      },
+      "help": {
+        "pl": "Wpisz brakujące liczby w pomarańczowe pola.",
+        "en": "Type the missing numbers into the orange boxes."
+      },
+      "columns": [
+        {
+          "pl": "Sunnah",
+          "en": "Sunnah"
+        },
+        {
+          "pl": "Fard",
+          "en": "Fard"
+        },
+        {
+          "pl": "Sunnah",
+          "en": "Sunnah"
+        },
+        {
+          "pl": "Witr",
+          "en": "Witr"
+        }
+      ],
+      "rows": [
+        {
+          "name": {
+            "pl": "Fajr",
+            "en": "Fajr"
+          },
+          "cells": [
+            "2",
+            null,
+            "–",
+            "–"
+          ],
+          "blanks": [
+            {
+              "col": 1,
+              "answer": "2"
+            }
+          ]
+        },
+        {
+          "name": {
+            "pl": "Zuhr",
+            "en": "Zuhr"
+          },
+          "cells": [
+            null,
+            "4",
+            "2",
+            "–"
+          ],
+          "blanks": [
+            {
+              "col": 0,
+              "answer": "4"
+            }
+          ]
+        },
+        {
+          "name": {
+            "pl": "Asr",
+            "en": "Asr"
+          },
+          "cells": [
+            "–",
+            null,
+            "–",
+            "–"
+          ],
+          "blanks": [
+            {
+              "col": 1,
+              "answer": "4"
+            }
+          ]
+        },
+        {
+          "name": {
+            "pl": "Maghrib",
+            "en": "Maghrib"
+          },
+          "cells": [
+            "–",
+            "3",
+            null,
+            "–"
+          ],
+          "blanks": [
+            {
+              "col": 2,
+              "answer": "2"
+            }
+          ]
+        },
+        {
+          "name": {
+            "pl": "Isha",
+            "en": "Isha"
+          },
+          "cells": [
+            "–",
+            "4",
+            "2",
+            null
+          ],
+          "blanks": [
+            {
+              "col": 3,
+              "answer": "3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 13,
+      "section": 1,
+      "type": "order",
+      "points": 2,
+      "prompt": {
+        "pl": "Ustaw kroki wudu w poprawnej kolejności",
+        "en": "Put the steps of wudu in the correct order"
+      },
+      "tiles": [
+        {
+          "pl": "Twarz",
+          "en": "The face"
+        },
+        {
+          "pl": "Bismillah-ir-Rahman-ir-Rahim",
+          "en": "Bismillah-ir-Rahman-ir-Rahim"
+        },
+        {
+          "pl": "Stopy do kostek",
+          "en": "The feet up to the ankles"
+        },
+        {
+          "pl": "Usta — prawą ręką",
+          "en": "The mouth — with the right hand"
+        },
+        {
+          "pl": "Głowa, uszy i kark",
+          "en": "The head, ears and neck"
+        },
+        {
+          "pl": "Ręce do nadgarstków",
+          "en": "The hands up to the wrists"
+        },
+        {
+          "pl": "Nos — lewą ręką",
+          "en": "The nose — with the left hand"
+        },
+        {
+          "pl": "Ręce do łokci",
+          "en": "The arms up to the elbows"
+        }
+      ],
+      "correctOrder": [
+        1,
+        5,
+        3,
+        6,
+        0,
+        7,
+        4,
+        2
+      ]
+    },
+    {
+      "n": 14,
+      "section": 1,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Które modlitwy wolno ze sobą łączyć?",
+        "en": "Which prayers may be combined with each other?"
+      },
+      "options": [
+        {
+          "pl": "Wszystkie pięć razem",
+          "en": "All five together"
+        },
+        {
+          "pl": "Fajr + Zuhr oraz Asr + Maghrib",
+          "en": "Fajr + Zuhr and Asr + Maghrib"
+        },
+        {
+          "pl": "Zuhr + Asr oraz Maghrib + Isha",
+          "en": "Zuhr + Asr and Maghrib + Isha"
+        },
+        {
+          "pl": "Żadnych — nigdy nie wolno",
+          "en": "None — it is never allowed"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 15,
+      "section": 1,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "W samolocie zawsze trzeba zwracać się w stronę Ka'by.",
+        "en": "In an aeroplane you must always face the Ka'bah."
+      },
+      "options": [
+        {
+          "pl": "Prawda",
+          "en": "True"
+        },
+        {
+          "pl": "Fałsz",
+          "en": "False"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 16,
+      "section": 1,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Jeśli założysz skarpetki po wudu, przez ile godzin nie musisz myć stóp (mas-ha)?",
+        "en": "If you put socks on after wudu, for how many hours do you not need to wash your feet (mas-ha)?"
+      },
+      "options": [
+        {
+          "pl": "6 godzin",
+          "en": "6 hours"
+        },
+        {
+          "pl": "12 godzin",
+          "en": "12 hours"
+        },
+        {
+          "pl": "24 godziny",
+          "en": "24 hours"
+        },
+        {
+          "pl": "48 godzin",
+          "en": "48 hours"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 17,
+      "section": 1,
+      "type": "open",
+      "points": 0,
+      "prompt": {
+        "pl": "Dlaczego przed modlitwą wykonujemy wudu? Odpowiedz w 1–3 zdaniach.",
+        "en": "Why do we perform wudu before prayer? Answer in 1–3 sentences."
+      },
+      "grading": "manual",
+      "manualMax": 2
+    },
+    {
+      "n": 18,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Która z poniższych rzeczy NIE jest jednym z Pięciu Filarów Islamu?",
+        "en": "Which of these is NOT one of the Five Pillars of Islam?"
+      },
+      "options": [
+        {
+          "pl": "Zakat",
+          "en": "Zakat"
+        },
+        {
+          "pl": "Post w Ramadan",
+          "en": "Fasting in Ramadan"
+        },
+        {
+          "pl": "Wiara we wszystkich proroków",
+          "en": "Belief in all the prophets"
+        },
+        {
+          "pl": "Hadżdż",
+          "en": "Hajj"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 19,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "W którym miesiącu kalendarza islamskiego pościmy?",
+        "en": "In which month of the Islamic calendar do we fast?"
+      },
+      "options": [
+        {
+          "pl": "W dziewiątym — Ramadan",
+          "en": "The ninth — Ramadan"
+        },
+        {
+          "pl": "W pierwszym — Muharram",
+          "en": "The first — Muharram"
+        },
+        {
+          "pl": "W dwunastym — Dhul-Hijjah",
+          "en": "The twelfth — Dhul-Hijjah"
+        },
+        {
+          "pl": "W siódmym — Rajab",
+          "en": "The seventh — Rajab"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "n": 20,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Co to jest Fidya?",
+        "en": "What is Fidya?"
+      },
+      "options": [
+        {
+          "pl": "Posiłek przed modlitwą Fajr",
+          "en": "The meal before the Fajr prayer"
+        },
+        {
+          "pl": "Pieniądze dawane w czasie Hadżdż",
+          "en": "Money given during the Hajj"
+        },
+        {
+          "pl": "Modlitwa odprawiana w Ramadan",
+          "en": "A prayer offered in Ramadan"
+        },
+        {
+          "pl": "Nakarmienie potrzebującego za każdy opuszczony dzień postu",
+          "en": "Feeding a needy person for each missed day of fasting"
+        }
+      ],
+      "correct": 3
+    },
+    {
+      "n": 21,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Co znaczy słowo „Zakat”?",
+        "en": "What does the word “Zakat” mean?"
+      },
+      "options": [
+        {
+          "pl": "Dawanie",
+          "en": "Giving"
+        },
+        {
+          "pl": "Oczyszczenie",
+          "en": "Purification"
+        },
+        {
+          "pl": "Modlitwa",
+          "en": "Prayer"
+        },
+        {
+          "pl": "Post",
+          "en": "Fasting"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 22,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "W którym miesiącu odbywa się Hadżdż?",
+        "en": "In which month does the Hajj take place?"
+      },
+      "options": [
+        {
+          "pl": "Ramadan",
+          "en": "Ramadan"
+        },
+        {
+          "pl": "Muharram",
+          "en": "Muharram"
+        },
+        {
+          "pl": "Dhul-Hijjah",
+          "en": "Dhul-Hijjah"
+        },
+        {
+          "pl": "Shawwal",
+          "en": "Shawwal"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 23,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Co znaczy przymiot Allaha „Al-Quddus”?",
+        "en": "What does the attribute of Allah “Al-Quddus” mean?"
+      },
+      "options": [
+        {
+          "pl": "Święty",
+          "en": "The Holy One"
+        },
+        {
+          "pl": "Król",
+          "en": "The King"
+        },
+        {
+          "pl": "Źródło Pokoju",
+          "en": "The Source of Peace"
+        },
+        {
+          "pl": "Miłosierny",
+          "en": "The Merciful"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "n": 24,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Co znaczy „As-Salamu 'Alaikum”?",
+        "en": "What does “As-Salamu 'Alaikum” mean?"
+      },
+      "options": [
+        {
+          "pl": "Dziękuję ci",
+          "en": "Thank you"
+        },
+        {
+          "pl": "Pokój z tobą",
+          "en": "Peace be upon you"
+        },
+        {
+          "pl": "Niech Allah cię prowadzi",
+          "en": "May Allah guide you"
+        },
+        {
+          "pl": "Do zobaczenia",
+          "en": "See you again"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 25,
+      "section": 2,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Uzupełnij hadis: „Czystość jest ______ wiary.”",
+        "en": "Complete the hadith: “Cleanliness is ______ of faith.”"
+      },
+      "options": [
+        {
+          "pl": "nagrodą",
+          "en": "the reward"
+        },
+        {
+          "pl": "początkiem",
+          "en": "the beginning"
+        },
+        {
+          "pl": "końcem",
+          "en": "the end"
+        },
+        {
+          "pl": "wymogiem",
+          "en": "a requirement"
+        }
+      ],
+      "correct": 3
+    },
+    {
+      "n": 26,
+      "section": 3,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Kim był Hadrat Adam (as)?",
+        "en": "Who was Hadrat Adam (as)?"
+      },
+      "options": [
+        {
+          "pl": "Pierwszym człowiekiem na ziemi",
+          "en": "The first man on earth"
+        },
+        {
+          "pl": "Pierwszym prorokiem, ale nie pierwszym człowiekiem",
+          "en": "The first prophet, but not the first man"
+        },
+        {
+          "pl": "Pierwszym khalifą",
+          "en": "The first khalifa"
+        },
+        {
+          "pl": "Prorokiem, który zbudował arkę",
+          "en": "The prophet who built the ark"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 27,
+      "section": 3,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Czym było „drzewo”, do którego Hadrat Adam (as) nie miał się zbliżać?",
+        "en": "What was the “tree” that Hadrat Adam (as) was told not to approach?"
+      },
+      "options": [
+        {
+          "pl": "Prawdziwe drzewo z zakazanymi jabłkami",
+          "en": "A real tree with forbidden apples"
+        },
+        {
+          "pl": "Góra koło Babilonu",
+          "en": "A mountain near Babylon"
+        },
+        {
+          "pl": "Kłótliwa rodzina, która była jego wrogiem",
+          "en": "A quarrelsome family that was his enemy"
+        },
+        {
+          "pl": "Zakazana studnia",
+          "en": "A forbidden well"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "n": 28,
+      "section": 3,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Hadrat Nuh (as) zabrał na arkę po parze wszystkich zwierząt świata.",
+        "en": "Hadrat Nuh (as) took a pair of every animal in the world onto the ark."
+      },
+      "options": [
+        {
+          "pl": "Fałsz",
+          "en": "False"
+        },
+        {
+          "pl": "Prawda",
+          "en": "True"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "n": 29,
+      "section": 3,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Kto z rodziny Hadrat Nuha (as) nie uwierzył i zginął w powodzi?",
+        "en": "Who in the family of Hadrat Nuh (as) did not believe and perished in the flood?"
+      },
+      "options": [
+        {
+          "pl": "Jego brat",
+          "en": "His brother"
+        },
+        {
+          "pl": "Jego matka",
+          "en": "His mother"
+        },
+        {
+          "pl": "Nikt z jego rodziny",
+          "en": "Nobody from his family"
+        },
+        {
+          "pl": "Jego żona i syn",
+          "en": "His wife and his son"
+        }
+      ],
+      "correct": 3
+    },
+    {
+      "n": 30,
+      "section": 3,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "W jakim mieście mieszkał Hadrat Ibrahim (as)?",
+        "en": "In which city did Hadrat Ibrahim (as) live?"
+      },
+      "options": [
+        {
+          "pl": "Mekka",
+          "en": "Mecca"
+        },
+        {
+          "pl": "Ur",
+          "en": "Ur"
+        },
+        {
+          "pl": "Babilon",
+          "en": "Babylon"
+        },
+        {
+          "pl": "Medyna",
+          "en": "Medina"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "n": 31,
+      "section": 3,
+      "type": "mc",
+      "points": 1,
+      "prompt": {
+        "pl": "Który syn Hadrat Ibrahima (as) był starszy?",
+        "en": "Which son of Hadrat Ibrahim (as) was the elder one?"
+      },
+      "options": [
+        {
+          "pl": "Hadrat Ismail (as)",
+          "en": "Hadrat Ismail (as)"
+        },
+        {
+          "pl": "Hadrat Ishaaq (as)",
+          "en": "Hadrat Ishaaq (as)"
+        },
+        {
+          "pl": "Hadrat Yaqub (as)",
+          "en": "Hadrat Yaqub (as)"
+        },
+        {
+          "pl": "Hadrat Lot (as)",
+          "en": "Hadrat Lot (as)"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "n": 32,
+      "section": 3,
+      "type": "fill",
+      "points": 1,
+      "prompt": {
+        "pl": "Ile razy Hadrat Hajra przebiegła między wzgórzami Safa i Marwa?",
+        "en": "How many times did Hadrat Hajra run between the hills of Safa and Marwa?"
+      },
+      "accept": [
+        "7",
+        "siedem",
+        "seven"
+      ],
+      "unit": {
+        "pl": "razy",
+        "en": "times"
+      }
+    },
+    {
+      "n": 33,
+      "section": 3,
+      "type": "order",
+      "points": 2,
+      "prompt": {
+        "pl": "Ustaw proroków w kolejności, w jakiej żyli",
+        "en": "Put the prophets in the order in which they lived"
+      },
+      "tiles": [
+        {
+          "pl": "Hadrat Ibrahim (as)",
+          "en": "Hadrat Ibrahim (as)"
+        },
+        {
+          "pl": "Hadrat Adam (as)",
+          "en": "Hadrat Adam (as)"
+        },
+        {
+          "pl": "Hadrat Ishaaq (as)",
+          "en": "Hadrat Ishaaq (as)"
+        },
+        {
+          "pl": "Hadrat Nuh (as)",
+          "en": "Hadrat Nuh (as)"
+        },
+        {
+          "pl": "Hadrat Ismail (as)",
+          "en": "Hadrat Ismail (as)"
+        }
+      ],
+      "correctOrder": [
+        1,
+        3,
+        0,
+        4,
+        2
+      ]
+    },
+    {
+      "n": 34,
+      "section": 3,
+      "type": "order",
+      "points": 2,
+      "prompt": {
+        "pl": "Ustaw Khulafa Rashidun w poprawnej kolejności",
+        "en": "Put the Khulafa Rashidun in the correct order"
+      },
+      "tiles": [
+        {
+          "pl": "Hadrat Umar (ra)",
+          "en": "Hadrat Umar (ra)"
+        },
+        {
+          "pl": "Hadrat Ali (ra)",
+          "en": "Hadrat Ali (ra)"
+        },
+        {
+          "pl": "Hadrat Abu Bakr (ra)",
+          "en": "Hadrat Abu Bakr (ra)"
+        },
+        {
+          "pl": "Hadrat Uthman (ra)",
+          "en": "Hadrat Uthman (ra)"
+        }
+      ],
+      "correctOrder": [
+        2,
+        0,
+        3,
+        1
+      ]
+    },
+    {
+      "n": 35,
+      "section": 3,
+      "type": "open",
+      "points": 0,
+      "prompt": {
+        "pl": "Dlaczego Allah posyła ludziom proroków? Odpowiedz w 1–3 zdaniach.",
+        "en": "Why does Allah send prophets to people? Answer in 1–3 sentences."
+      },
+      "grading": "manual",
+      "manualMax": 2
+    }
+  ]
+}

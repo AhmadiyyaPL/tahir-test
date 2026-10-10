@@ -1,0 +1,13 @@
+{
+  "name": "tahir-academy-test",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Online test for the weekly kids' class (Tahir Academy) — static student page, teacher page, Google Apps Script backend.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "validate": "node tools/validate.js",
+    "test": "node --test",
+    "start": "node tools/serve.js"
+  }
+}

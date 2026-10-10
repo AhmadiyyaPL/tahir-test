@@ -1,0 +1,931 @@
+<title>Tahir Academy Test I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: single centred column, one task per screen, sticky progress rail on top. */
+:root{
+  --bg:#f6f4ee;
+  --surface:#ffffff;
+  --ink:#1d2621;
+  --ink-soft:#5c6a62;
+  --line:#dcd9cf;
+  --accent:#0f6f5c;
+  --accent-soft:#e3f0ec;
+  --good:#1a7f4b;
+  --bad:#b23a2e;
+  --warm:#a8701a;
+  --s0:#0f6f5c;
+  --s1:#2f5aa8;
+  --s2:#a8701a;
+  --s3:#7a3f78;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131a17; --surface:#1c2521; --ink:#eef2ef; --ink-soft:#a3b2aa; --line:#2e3a34;
+    --accent:#4fc3a6; --accent-soft:#1f322c; --good:#59c98a; --bad:#f08a7c; --warm:#e0ab54;
+    --s0:#4fc3a6; --s1:#7aa5ee; --s2:#e0ab54; --s3:#cf9ccd;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131a17; --surface:#1c2521; --ink:#eef2ef; --ink-soft:#a3b2aa; --line:#2e3a34;
+  --accent:#4fc3a6; --accent-soft:#1f322c; --good:#59c98a; --bad:#f08a7c; --warm:#e0ab54;
+  --s0:#4fc3a6; --s1:#7aa5ee; --s2:#e0ab54; --s3:#cf9ccd;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;margin:0}
+.wrap{max-width:680px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);
+      padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.railtop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.sectag{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.02em}
+.count{font-size:14px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .25s ease}
+@media (prefers-reduced-motion:reduce){.bar>i{transition:none}}
+
+.hero{padding-block:34px 8px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-size:clamp(30px,7vw,42px);line-height:1.08;margin-top:6px}
+.lede{color:var(--ink-soft);margin-top:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-weight:700;font-size:15px}
+input,select,textarea{font:inherit;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+             background:var(--surface);color:var(--ink);width:100%;min-width:0}
+textarea{resize:vertical;min-height:120px;line-height:1.5}
+.langrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lang{padding:14px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);
+      color:var(--ink);font-weight:700;font-family:var(--display);font-size:17px}
+.lang[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:11px;padding:15px 22px;
+     font-family:var(--display);font-weight:700;font-size:18px;width:100%}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn.small{font-size:15px;padding:10px 16px;width:auto}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.note{font-size:14px;color:var(--ink-soft)}
+.rules{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.rules li{display:flex;gap:10px;align-items:flex-start}
+.rules b{color:var(--accent);font-family:var(--display)}
+
+.qwrap{padding-block:22px}
+.qnum{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.qtext{font-family:var(--display);font-size:clamp(21px,4.6vw,26px);line-height:1.25;margin:8px 0 10px}
+.qsub{font-size:15px;color:var(--ink-soft);margin:0 0 18px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+     background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px 15px;color:var(--ink)}
+.opt .key{flex:0 0 28px;height:28px;border-radius:8px;background:var(--line);color:var(--ink);
+          display:grid;place-items:center;font-weight:700;font-size:14px;font-family:var(--display)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] .key{background:var(--accent);color:#fff}
+
+/* ordering tiles */
+.tiles{display:flex;flex-wrap:wrap;gap:9px}
+.tile{display:flex;align-items:center;gap:9px;background:var(--surface);border:1.5px solid var(--line);
+      border-radius:12px;padding:11px 13px;color:var(--ink);text-align:left;font-size:16px;line-height:1.3}
+.tile .pin{flex:0 0 24px;height:24px;border-radius:7px;background:var(--line);color:var(--ink-soft);
+           display:grid;place-items:center;font-weight:700;font-size:13px;font-family:var(--display)}
+.tile[data-picked="1"]{border-color:var(--accent);background:var(--accent-soft)}
+.tile[data-picked="1"] .pin{background:var(--accent);color:#fff}
+.toolrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px}
+
+/* rak'ah table */
+.tablewrap{overflow-x:auto}
+table.rak{border-collapse:collapse;width:100%;min-width:430px;font-size:16px}
+table.rak th,table.rak td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+table.rak th{background:var(--accent-soft);color:var(--accent);font-family:var(--display);font-size:14px}
+table.rak td.name{text-align:left;font-weight:700;white-space:nowrap}
+table.rak input{width:62px;padding:8px 6px;text-align:center;font-weight:700;
+                font-family:var(--display);font-size:18px;border-color:var(--warm)}
+
+/* short fill */
+.fillrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.fillrow input{width:150px;text-align:center;font-family:var(--display);font-size:22px;font-weight:700}
+.unit{color:var(--ink-soft);font-size:15px}
+
+.nav{display:flex;gap:10px;margin-top:20px}
+.nav .btn{width:auto;flex:1}
+
+.scorebox{text-align:center;padding-block:28px 8px}
+.big{font-family:var(--display);font-size:clamp(46px,13vw,72px);line-height:1;color:var(--accent)}
+.pct{font-size:18px;color:var(--ink-soft);margin-top:4px}
+.secgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.sec{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.sec .n{font-size:13px;font-weight:700}
+.sec .v{font-family:var(--display);font-size:22px;font-variant-numeric:tabular-nums}
+h2{font-size:21px;margin-top:30px}
+.rev{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.item{border:1px solid var(--line);border-left:5px solid var(--bad);border-radius:12px;
+      padding:13px 15px;background:var(--surface)}
+.item.ok{border-left-color:var(--good)}
+.item.part{border-left-color:var(--warm)}
+.item.manual{border-left-color:var(--s1)}
+.item .q{font-weight:700;font-size:16px}
+.item .a{font-size:15px;margin-top:6px;color:var(--ink-soft)}
+.item .a b{color:var(--good)}
+.item .a i{color:var(--bad);font-style:normal}
+.codebox{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;
+         white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);
+         border-radius:12px;padding:14px;margin-top:12px;overflow-x:auto;user-select:all}
+.toast{margin-top:10px;font-size:14.5px;font-weight:700}
+.foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-soft)}
+</style>
+
+<div class="wrap">
+
+  <section id="screen-start">
+    <div class="hero">
+      <div class="eyebrow" id="t-eyebrow">Tahir Academy · Poziom 2</div>
+      <h1 id="t-title">Test — część I</h1>
+      <p class="lede" id="t-lede">Święty Koran · Salat · Podstawy Islamu · Historia Islamu</p>
+    </div>
+
+    <div class="card stack">
+      <div class="field">
+        <label id="t-langlabel">Język testu / Test language</label>
+        <div class="langrow">
+          <button class="lang" id="lang-pl" aria-pressed="true">Polski</button>
+          <button class="lang" id="lang-en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-name" id="t-namelabel">Imię i nazwisko</label>
+        <input id="f-name" type="text" autocomplete="off" spellcheck="false" placeholder="Adam">
+      </div>
+      <div class="field">
+        <label for="f-age" id="t-agelabel">Wiek</label>
+        <select id="f-age">
+          <option value="">—</option>
+          <option>8</option><option>9</option><option>10</option><option>11</option>
+          <option>12</option><option>13</option><option>14</option><option>15</option>
+        </select>
+      </div>
+      <button class="btn" id="btn-start" disabled>Zacznij test</button>
+      <button class="btn ghost" id="btn-resume" hidden>Dokończ rozpoczęty test</button>
+    </div>
+
+    <ul class="rules" id="t-rules"></ul>
+    <p class="foot" id="t-foot"></p>
+  </section>
+
+  <section id="screen-quiz" hidden>
+    <div class="rail">
+      <div class="railtop">
+        <span class="sectag" id="q-sec"></span>
+        <span class="count" id="q-count"></span>
+      </div>
+      <div class="bar"><i id="q-bar"></i></div>
+    </div>
+    <div class="qwrap">
+      <div class="qnum" id="q-num"></div>
+      <h2 class="qtext" id="q-text"></h2>
+      <p class="qsub" id="q-sub" hidden></p>
+      <div id="q-body"></div>
+      <div class="nav">
+        <button class="btn ghost" id="btn-prev"></button>
+        <button class="btn" id="btn-next"></button>
+      </div>
+      <p class="note" id="q-hint" style="margin-top:14px"></p>
+    </div>
+  </section>
+
+  <section id="screen-done" hidden>
+    <div class="scorebox">
+      <div class="eyebrow" id="r-who"></div>
+      <div class="big" id="r-score"></div>
+      <div class="pct" id="r-pct"></div>
+    </div>
+    <div class="secgrid" id="r-secs"></div>
+
+    <h2 id="r-sendhead"></h2>
+    <p class="note" id="r-sendnote"></p>
+    <pre class="codebox" id="r-summary"></pre>
+    <div class="nav">
+      <button class="btn" id="btn-copy"></button>
+    </div>
+    <p class="toast" id="r-toast" hidden></p>
+
+    <h2 id="r-revhead"></h2>
+    <div class="rev" id="r-rev"></div>
+
+    <div class="nav" style="margin-top:26px">
+      <button class="btn ghost" id="btn-again"></button>
+    </div>
+    <p class="foot" id="r-foot"></p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var SECTIONS = [
+  {pl:"Święty Koran",     en:"The Holy Qur'an",   c:"--s0"},
+  {pl:"Salat i modlitwy", en:"Salat and Prayers", c:"--s1"},
+  {pl:"Podstawy Islamu",  en:"Basics of Islam",   c:"--s2"},
+  {pl:"Historia Islamu",  en:"History of Islam",  c:"--s3"}
+];
+
+/* ---- helpers to author items ---- */
+function mc(sec,pl,en,opts,c){ return {sec:sec,type:"mc",pl:pl,en:en,opts:opts,c:c,pts:1}; }
+function fill(sec,pl,en,ok,unit){ return {sec:sec,type:"fill",pl:pl,en:en,ok:ok,unit:unit,pts:1}; }
+function ord(sec,pl,en,tiles,c){ return {sec:sec,type:"order",pl:pl,en:en,tiles:tiles,c:c,pts:2}; }
+function open_(sec,pl,en){ return {sec:sec,type:"open",pl:pl,en:en,pts:0}; }
+
+var Q = [
+
+/* ======== 1 · KORAN ======== */
+mc(0,"Co znaczy słowo „Koran”?","What does the word “Qur'an” mean?",
+ [["Święta księga Boga","God's holy book"],
+  ["Często czytany lub recytowany","Often read or recited"],
+  ["Światło świata","The light of the world"],
+  ["Księga modlitw","The book of prayers"]],1),
+
+mc(0,"Jak długo trwało objawianie Koranu?","Over how long was the Holy Qur'an revealed?",
+ [["10 lat","10 years"],["32 lata","32 years"],
+  ["22 lata i 5 miesięcy","22 years and 5 months"],["40 lat","40 years"]],2),
+
+mc(0,"Gdzie Święty Prorok (sa) otrzymał pierwsze objawienie?","Where did the Holy Prophet (sa) receive the first revelation?",
+ [["W jaskini Hira","In the cave of Hira"],["W Medynie","In Medina"],
+  ["Wewnątrz Ka'by","Inside the Ka'bah"],["W Jerozolimie","In Jerusalem"]],0),
+
+mc(0,"Kto przyniósł Prorokowi (sa) pierwsze objawienie?","Who brought the first revelation to the Holy Prophet (sa)?",
+ [["Anioł Mikail","Angel Mikail"],["Hadrat Abu Bakr (ra)","Hadrat Abu Bakr (ra)"],
+  ["Hadrat Ibrahim (as)","Hadrat Ibrahim (as)"],["Anioł Dżibril","Angel Jibril"]],3),
+
+fill(0,"Ile części (dżuz) ma Koran?","How many parts (juz) does the Holy Qur'an have?",
+ ["30"],["części","parts"]),
+
+fill(0,"Ile rozdziałów (sur) ma Koran?","How many chapters (surahs) does the Holy Qur'an have?",
+ ["114"],["sur","surahs"]),
+
+mc(0,"Na czym zapisywano wersety Koranu za życia Proroka (sa)?","What were the verses written on during the life of the Holy Prophet (sa)?",
+ [["Na papierze z Egiptu","On paper from Egypt"],
+  ["Na skórze, korze drzew i kamieniach","On leather, tree bark and stones"],
+  ["W drukowanych książkach","In printed books"],
+  ["Nigdzie — tylko zapamiętywano","Nowhere — it was only memorised"]],1),
+
+mc(0,"Jak nazywamy osobę, która zna cały Koran na pamięć?","What do we call a person who knows the whole Qur'an by heart?",
+ [["Imam","Imam"],["Murabbi","Murabbi"],
+  ["Hafiz-ul-Qur'an","Hafiz-ul-Qur'an"],["Khalifa","Khalifa"]],2),
+
+/* ======== 2 · SALAT ======== */
+mc(1,"Ile jest rodzajów modlitw?","How many kinds of prayers are there?",
+ [["Trzy","Three"],["Cztery","Four"],["Pięć","Five"],["Dwa","Two"]],1),
+
+mc(1,"Modlitwa Witr i modlitwy Eid to modlitwy…","The Witr prayer and the Eid prayers are…",
+ [["Nafl","Nafl"],["Sunnah","Sunnah"],["Fard","Fard"],["Waajib","Waajib"]],3),
+
+mc(1,"Tahadżdżud to modlitwa…","Tahajjud is a … prayer",
+ [["Nafl — dobrowolna","Nafl — voluntary"],["Fard — obowiązkowa","Fard — obligatory"],
+  ["Waajib — konieczna","Waajib — necessary"],["Sunnah","Sunnah"]],0),
+
+{sec:1,type:"table",pts:5,
+ pl:"Uzupełnij tabelę rakaatów",en:"Fill in the rak'ah table",
+ subpl:"Wpisz brakujące liczby w pomarańczowe pola.",
+ suben:"Type the missing numbers into the orange boxes.",
+ cols:[["Sunnah","Sunnah"],["Fard","Fard"],["Sunnah","Sunnah"],["Witr","Witr"]],
+ rows:[
+  {name:["Fajr","Fajr"],      cells:["2",  null,"–", "–" ], blanks:{1:"2"}},
+  {name:["Zuhr","Zuhr"],      cells:[null,"4", "2", "–" ], blanks:{0:"4"}},
+  {name:["Asr","Asr"],        cells:["–", null,"–", "–" ], blanks:{1:"4"}},
+  {name:["Maghrib","Maghrib"],cells:["–", "3", null,"–" ], blanks:{2:"2"}},
+  {name:["Isha","Isha"],      cells:["–", "4", "2", null], blanks:{3:"3"}}
+ ]},
+
+ord(1,"Ustaw kroki wudu w poprawnej kolejności","Put the steps of wudu in the correct order",
+ [["Twarz","The face"],
+  ["Bismillah-ir-Rahman-ir-Rahim","Bismillah-ir-Rahman-ir-Rahim"],
+  ["Stopy do kostek","The feet up to the ankles"],
+  ["Usta — prawą ręką","The mouth — with the right hand"],
+  ["Głowa, uszy i kark","The head, ears and neck"],
+  ["Ręce do nadgarstków","The hands up to the wrists"],
+  ["Nos — lewą ręką","The nose — with the left hand"],
+  ["Ręce do łokci","The arms up to the elbows"]],
+ [1,5,3,6,0,7,4,2]),
+
+mc(1,"Które modlitwy wolno ze sobą łączyć?","Which prayers may be combined with each other?",
+ [["Wszystkie pięć razem","All five together"],
+  ["Fajr + Zuhr oraz Asr + Maghrib","Fajr + Zuhr and Asr + Maghrib"],
+  ["Zuhr + Asr oraz Maghrib + Isha","Zuhr + Asr and Maghrib + Isha"],
+  ["Żadnych — nigdy nie wolno","None — it is never allowed"]],2),
+
+mc(1,"W samolocie zawsze trzeba zwracać się w stronę Ka'by.","In an aeroplane you must always face the Ka'bah.",
+ [["Prawda","True"],["Fałsz","False"]],1),
+
+mc(1,"Jeśli założysz skarpetki po wudu, przez ile godzin nie musisz myć stóp (mas-ha)?","If you put socks on after wudu, for how many hours do you not need to wash your feet (mas-ha)?",
+ [["6 godzin","6 hours"],["12 godzin","12 hours"],["24 godziny","24 hours"],["48 godzin","48 hours"]],2),
+
+open_(1,"Dlaczego przed modlitwą wykonujemy wudu? Odpowiedz w 1–3 zdaniach.",
+       "Why do we perform wudu before prayer? Answer in 1–3 sentences."),
+
+/* ======== 3 · PODSTAWY ISLAMU ======== */
+mc(2,"Która z poniższych rzeczy NIE jest jednym z Pięciu Filarów Islamu?","Which of these is NOT one of the Five Pillars of Islam?",
+ [["Zakat","Zakat"],["Post w Ramadan","Fasting in Ramadan"],
+  ["Wiara we wszystkich proroków","Belief in all the prophets"],["Hadżdż","Hajj"]],2),
+
+mc(2,"W którym miesiącu kalendarza islamskiego pościmy?","In which month of the Islamic calendar do we fast?",
+ [["W dziewiątym — Ramadan","The ninth — Ramadan"],["W pierwszym — Muharram","The first — Muharram"],
+  ["W dwunastym — Dhul-Hijjah","The twelfth — Dhul-Hijjah"],["W siódmym — Rajab","The seventh — Rajab"]],0),
+
+mc(2,"Co to jest Fidya?","What is Fidya?",
+ [["Posiłek przed modlitwą Fajr","The meal before the Fajr prayer"],
+  ["Pieniądze dawane w czasie Hadżdż","Money given during the Hajj"],
+  ["Modlitwa odprawiana w Ramadan","A prayer offered in Ramadan"],
+  ["Nakarmienie potrzebującego za każdy opuszczony dzień postu","Feeding a needy person for each missed day of fasting"]],3),
+
+mc(2,"Co znaczy słowo „Zakat”?","What does the word “Zakat” mean?",
+ [["Dawanie","Giving"],["Oczyszczenie","Purification"],["Modlitwa","Prayer"],["Post","Fasting"]],1),
+
+mc(2,"W którym miesiącu odbywa się Hadżdż?","In which month does the Hajj take place?",
+ [["Ramadan","Ramadan"],["Muharram","Muharram"],["Dhul-Hijjah","Dhul-Hijjah"],["Shawwal","Shawwal"]],2),
+
+mc(2,"Co znaczy przymiot Allaha „Al-Quddus”?","What does the attribute of Allah “Al-Quddus” mean?",
+ [["Święty","The Holy One"],["Król","The King"],
+  ["Źródło Pokoju","The Source of Peace"],["Miłosierny","The Merciful"]],0),
+
+mc(2,"Co znaczy „As-Salamu 'Alaikum”?","What does “As-Salamu 'Alaikum” mean?",
+ [["Dziękuję ci","Thank you"],["Pokój z tobą","Peace be upon you"],
+  ["Niech Allah cię prowadzi","May Allah guide you"],["Do zobaczenia","See you again"]],1),
+
+mc(2,"Uzupełnij hadis: „Czystość jest ______ wiary.”","Complete the hadith: “Cleanliness is ______ of faith.”",
+ [["nagrodą","the reward"],["początkiem","the beginning"],
+  ["końcem","the end"],["wymogiem","a requirement"]],3),
+
+/* ======== 4 · HISTORIA ======== */
+mc(3,"Kim był Hadrat Adam (as)?","Who was Hadrat Adam (as)?",
+ [["Pierwszym człowiekiem na ziemi","The first man on earth"],
+  ["Pierwszym prorokiem, ale nie pierwszym człowiekiem","The first prophet, but not the first man"],
+  ["Pierwszym khalifą","The first khalifa"],
+  ["Prorokiem, który zbudował arkę","The prophet who built the ark"]],1),
+
+mc(3,"Czym było „drzewo”, do którego Hadrat Adam (as) nie miał się zbliżać?","What was the “tree” that Hadrat Adam (as) was told not to approach?",
+ [["Prawdziwe drzewo z zakazanymi jabłkami","A real tree with forbidden apples"],
+  ["Góra koło Babilonu","A mountain near Babylon"],
+  ["Kłótliwa rodzina, która była jego wrogiem","A quarrelsome family that was his enemy"],
+  ["Zakazana studnia","A forbidden well"]],2),
+
+mc(3,"Hadrat Nuh (as) zabrał na arkę po parze wszystkich zwierząt świata.","Hadrat Nuh (as) took a pair of every animal in the world onto the ark.",
+ [["Fałsz","False"],["Prawda","True"]],0),
+
+mc(3,"Kto z rodziny Hadrat Nuha (as) nie uwierzył i zginął w powodzi?","Who in the family of Hadrat Nuh (as) did not believe and perished in the flood?",
+ [["Jego brat","His brother"],["Jego matka","His mother"],
+  ["Nikt z jego rodziny","Nobody from his family"],["Jego żona i syn","His wife and his son"]],3),
+
+mc(3,"W jakim mieście mieszkał Hadrat Ibrahim (as)?","In which city did Hadrat Ibrahim (as) live?",
+ [["Mekka","Mecca"],["Ur","Ur"],["Babilon","Babylon"],["Medyna","Medina"]],1),
+
+mc(3,"Który syn Hadrat Ibrahima (as) był starszy?","Which son of Hadrat Ibrahim (as) was the elder one?",
+ [["Hadrat Ismail (as)","Hadrat Ismail (as)"],["Hadrat Ishaaq (as)","Hadrat Ishaaq (as)"],
+  ["Hadrat Yaqub (as)","Hadrat Yaqub (as)"],["Hadrat Lot (as)","Hadrat Lot (as)"]],0),
+
+fill(3,"Ile razy Hadrat Hajra przebiegła między wzgórzami Safa i Marwa?","How many times did Hadrat Hajra run between the hills of Safa and Marwa?",
+ ["7","siedem","seven"],["razy","times"]),
+
+ord(3,"Ustaw proroków w kolejności, w jakiej żyli","Put the prophets in the order in which they lived",
+ [["Hadrat Ibrahim (as)","Hadrat Ibrahim (as)"],
+  ["Hadrat Adam (as)","Hadrat Adam (as)"],
+  ["Hadrat Ishaaq (as)","Hadrat Ishaaq (as)"],
+  ["Hadrat Nuh (as)","Hadrat Nuh (as)"],
+  ["Hadrat Ismail (as)","Hadrat Ismail (as)"]],
+ [1,3,0,4,2]),
+
+ord(3,"Ustaw Khulafa Rashidun w poprawnej kolejności","Put the Khulafa Rashidun in the correct order",
+ [["Hadrat Umar (ra)","Hadrat Umar (ra)"],
+  ["Hadrat Ali (ra)","Hadrat Ali (ra)"],
+  ["Hadrat Abu Bakr (ra)","Hadrat Abu Bakr (ra)"],
+  ["Hadrat Uthman (ra)","Hadrat Uthman (ra)"]],
+ [2,0,3,1]),
+
+open_(3,"Dlaczego Allah posyła ludziom proroków? Odpowiedz w 1–3 zdaniach.",
+       "Why does Allah send prophets to people? Answer in 1–3 sentences.")
+];
+
+/* ---------------- i18n ---------------- */
+var T = {
+  pl:{eyebrow:"Tahir Academy · Poziom 2", title:"Test — część I",
+      lede:"Święty Koran · Salat · Podstawy Islamu · Historia Islamu",
+      langlabel:"Język testu / Test language", namelabel:"Imię i nazwisko", agelabel:"Wiek",
+      start:"Zacznij test", resume:"Dokończ rozpoczęty test",
+      rules:["35 zadań w czterech częściach.",
+             "Są pytania z wyborem, układanie kolejności, tabela do uzupełnienia i dwa pytania otwarte.",
+             "Możesz wracać do poprzednich zadań.",
+             "Rozwiąż wszystko sam, bez książki i bez ściągi.",
+             "Na końcu wyślij swój wynik nauczycielowi."],
+      foot:"Jeśli w domu test pisze więcej niż jedno dziecko — po zakończeniu naciśnijcie „Nowy test” i zacznijcie od początku.",
+      prev:"Wstecz", next:"Dalej", finish:"Zakończ test",
+      of:"z", task:"Zadanie",
+      hintMc:"Wybierz odpowiedź, żeby przejść dalej.",
+      hintOrder:"Klikaj kafelki po kolei — od pierwszego do ostatniego.",
+      hintTable:"Uzupełnij wszystkie pomarańczowe pola.",
+      hintFill:"Wpisz liczbę.",
+      hintOpen:"Napisz 1–3 zdania własnymi słowami.",
+      clear:"Wyczyść", picked:"wybrane",
+      pts:"pkt",
+      pct:"punktów", open:"pytania otwarte — ocenia nauczyciel",
+      sendhead:"Wyślij wynik nauczycielowi",
+      sendnote:"Naciśnij „Kopiuj wynik”, a potem wklej go nauczycielowi w wiadomości.",
+      copy:"Kopiuj wynik", copied:"Skopiowano — wklej teraz w wiadomości do nauczyciela.",
+      copyfail:"Zaznacz tekst powyżej i skopiuj go ręcznie.",
+      revhead:"Twoje odpowiedzi", yourans:"Twoja odpowiedź:", correct:"Poprawna odpowiedź:",
+      tocheck:"Do oceny przez nauczyciela",
+      again:"Nowy test (następne dziecko)",
+      rfoot:"Pokaż ten wynik rodzicom i nauczycielowi.",
+      name:"Imię", age:"Wiek", date:"Data", score:"Punkty", wrong:"Błędne zadania", code:"Kod",
+      openhead:"PYTANIA OTWARTE (do oceny)",
+      none:"brak — wszystko poprawnie",
+      m:["Powtórz jeszcze raz materiał — dasz radę!","Nieźle, ale warto jeszcze powtórzyć.",
+         "Bardzo dobrze!","Świetnie! Masz to opanowane."]},
+  en:{eyebrow:"Tahir Academy · Level 2", title:"Test — Part I",
+      lede:"The Holy Qur'an · Salat · Basics of Islam · History of Islam",
+      langlabel:"Test language / Język testu", namelabel:"Full name", agelabel:"Age",
+      start:"Start the test", resume:"Continue your test",
+      rules:["35 tasks in four parts.",
+             "There are multiple-choice questions, ordering tasks, a table to complete and two open questions.",
+             "You can go back to earlier tasks.",
+             "Answer on your own, without your book or notes.",
+             "Send your result to your teacher at the end."],
+      foot:"If more than one child takes the test at home — press “New test” when finished and start again.",
+      prev:"Back", next:"Next", finish:"Finish test",
+      of:"of", task:"Task",
+      hintMc:"Choose an answer to continue.",
+      hintOrder:"Tap the tiles in order — from first to last.",
+      hintTable:"Fill in every orange box.",
+      hintFill:"Type the number.",
+      hintOpen:"Write 1–3 sentences in your own words.",
+      clear:"Clear", picked:"chosen",
+      pts:"pts",
+      pct:"points", open:"open questions — marked by the teacher",
+      sendhead:"Send your result to the teacher",
+      sendnote:"Press “Copy result”, then paste it into a message to your teacher.",
+      copy:"Copy result", copied:"Copied — now paste it in a message to your teacher.",
+      copyfail:"Select the text above and copy it by hand.",
+      revhead:"Your answers", yourans:"Your answer:", correct:"Correct answer:",
+      tocheck:"To be marked by the teacher",
+      again:"New test (next child)",
+      rfoot:"Show this result to your parents and your teacher.",
+      name:"Name", age:"Age", date:"Date", score:"Points", wrong:"Wrong tasks", code:"Code",
+      openhead:"OPEN QUESTIONS (to be marked)",
+      none:"none — all correct",
+      m:["Go over the material once more — you can do it!","Not bad, but keep revising.",
+         "Very good!","Excellent! You know this well."]}
+};
+
+/* ---------------- state ---------------- */
+var lang = "pl";
+var A = [];            // one entry per item
+var idx = 0;
+var who = {name:"", age:""};
+var KEY = "ta-test-p1-v2";
+var MAXPTS = Q.reduce(function(s,q){ return s + q.pts; }, 0);
+
+function blank(){
+  return Q.map(function(q){
+    if(q.type === "mc")    return null;
+    if(q.type === "order") return [];
+    if(q.type === "table") return tableBlankKeys(q).map(function(){ return ""; });
+    return "";
+  });
+}
+function tableBlankKeys(q){
+  var keys = [];
+  q.rows.forEach(function(r, ri){
+    Object.keys(r.blanks).forEach(function(ci){ keys.push([ri, Number(ci), r.blanks[ci]]); });
+  });
+  return keys;
+}
+function $(id){ return document.getElementById(id); }
+function t(){ return T[lang]; }
+function L(){ return lang === "pl" ? 0 : 1; }
+
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify({lang:lang,A:A,idx:idx,who:who})); }catch(e){}
+}
+function clearSave(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+function load(){
+  try{
+    var raw = localStorage.getItem(KEY); if(!raw) return null;
+    var d = JSON.parse(raw);
+    if(!d || !Array.isArray(d.A) || d.A.length !== Q.length) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+/* ---------------- start ---------------- */
+function paintStart(){
+  var s = t();
+  $("t-eyebrow").textContent = s.eyebrow;
+  $("t-title").textContent = s.title;
+  $("t-lede").textContent = s.lede;
+  $("t-langlabel").textContent = s.langlabel;
+  $("t-namelabel").textContent = s.namelabel;
+  $("t-agelabel").textContent = s.agelabel;
+  $("btn-start").textContent = s.start;
+  $("btn-resume").textContent = s.resume;
+  $("t-foot").textContent = s.foot;
+  var ul = $("t-rules"); ul.textContent = "";
+  s.rules.forEach(function(r,i){
+    var li = document.createElement("li");
+    var b = document.createElement("b"); b.textContent = (i+1)+".";
+    var sp = document.createElement("span"); sp.textContent = r;
+    li.appendChild(b); li.appendChild(sp); ul.appendChild(li);
+  });
+  $("lang-pl").setAttribute("aria-pressed", lang==="pl" ? "true":"false");
+  $("lang-en").setAttribute("aria-pressed", lang==="en" ? "true":"false");
+}
+function checkReady(){
+  $("btn-start").disabled = !($("f-name").value.trim() && $("f-age").value);
+}
+$("lang-pl").addEventListener("click", function(){ lang="pl"; paintStart(); });
+$("lang-en").addEventListener("click", function(){ lang="en"; paintStart(); });
+$("f-name").addEventListener("input", checkReady);
+$("f-age").addEventListener("change", checkReady);
+
+$("btn-start").addEventListener("click", function(){
+  who = {name:$("f-name").value.trim(), age:$("f-age").value};
+  A = blank(); idx = 0; save();
+  show("quiz"); paintQ();
+});
+$("btn-resume").addEventListener("click", function(){
+  var d = load(); if(!d) return;
+  lang = d.lang || "pl"; A = d.A; who = d.who || {name:"",age:""};
+  idx = Math.min(d.idx || 0, Q.length-1);
+  show("quiz"); paintQ();
+});
+function show(which){
+  $("screen-start").hidden = which !== "start";
+  $("screen-quiz").hidden  = which !== "quiz";
+  $("screen-done").hidden  = which !== "done";
+  window.scrollTo(0,0);
+}
+
+/* ---------------- answered? ---------------- */
+function answered(i){
+  var q = Q[i], v = A[i];
+  if(q.type === "mc")    return v !== null;
+  if(q.type === "order") return Array.isArray(v) && v.length === q.tiles.length;
+  if(q.type === "table") return v.every(function(x){ return String(x).trim() !== ""; });
+  if(q.type === "fill")  return String(v).trim() !== "";
+  if(q.type === "open")  return String(v).trim().length >= 3;
+  return false;
+}
+
+/* ---------------- render one task ---------------- */
+function paintQ(){
+  var s = t(), q = Q[idx], sec = SECTIONS[q.sec], li = L();
+  var tag = $("q-sec");
+  tag.textContent = sec[lang];
+  tag.style.color = "var(" + sec.c + ")";
+  $("q-count").textContent = (idx+1) + " " + s.of + " " + Q.length;
+  $("q-bar").style.width = (((idx+1)/Q.length)*100) + "%";
+  $("q-num").textContent = s.task + " " + (idx+1) +
+      (q.pts ? "  ·  " + q.pts + " " + s.pts : "");
+  $("q-text").textContent = q[lang];
+
+  var sub = $("q-sub");
+  var subTxt = lang === "pl" ? q.subpl : q.suben;
+  sub.hidden = !subTxt;
+  sub.textContent = subTxt || "";
+
+  var body = $("q-body"); body.textContent = "";
+
+  if(q.type === "mc")    body.appendChild(viewMc(q, li));
+  if(q.type === "order") body.appendChild(viewOrder(q, li, s));
+  if(q.type === "table") body.appendChild(viewTable(q, li));
+  if(q.type === "fill")  body.appendChild(viewFill(q, li));
+  if(q.type === "open")  body.appendChild(viewOpen(q, s));
+
+  $("btn-prev").textContent = s.prev;
+  $("btn-prev").disabled = idx === 0;
+  var last = idx === Q.length - 1;
+  $("btn-next").textContent = last ? s.finish : s.next;
+  refreshNext();
+}
+function refreshNext(){
+  var s = t(), q = Q[idx], ok = answered(idx);
+  $("btn-next").disabled = !ok;
+  var hints = {mc:s.hintMc, order:s.hintOrder, table:s.hintTable, fill:s.hintFill, open:s.hintOpen};
+  $("q-hint").textContent = ok ? "" : hints[q.type];
+}
+
+function viewMc(q, li){
+  var box = document.createElement("div"); box.className = "opts";
+  var letters = ["A","B","C","D"];
+  q.opts.forEach(function(o, k){
+    var b = document.createElement("button");
+    b.className = "opt"; b.type = "button";
+    b.setAttribute("aria-pressed", A[idx] === k ? "true" : "false");
+    var key = document.createElement("span"); key.className = "key"; key.textContent = letters[k];
+    var txt = document.createElement("span"); txt.textContent = o[li];
+    b.appendChild(key); b.appendChild(txt);
+    b.addEventListener("click", function(){ A[idx] = k; save(); paintQ(); });
+    box.appendChild(b);
+  });
+  return box;
+}
+
+function viewOrder(q, li, s){
+  var frag = document.createElement("div");
+  var grid = document.createElement("div"); grid.className = "tiles";
+  var picked = A[idx];
+  q.tiles.forEach(function(tile, k){
+    var pos = picked.indexOf(k);
+    var b = document.createElement("button");
+    b.className = "tile"; b.type = "button";
+    b.setAttribute("data-picked", pos >= 0 ? "1" : "0");
+    var pin = document.createElement("span"); pin.className = "pin";
+    pin.textContent = pos >= 0 ? String(pos + 1) : "";
+    var txt = document.createElement("span"); txt.textContent = tile[li];
+    b.appendChild(pin); b.appendChild(txt);
+    b.addEventListener("click", function(){
+      var at = A[idx].indexOf(k);
+      if(at >= 0) A[idx].splice(at, 1); else A[idx].push(k);
+      save(); paintQ();
+    });
+    grid.appendChild(b);
+  });
+  frag.appendChild(grid);
+  var row = document.createElement("div"); row.className = "toolrow";
+  var n = document.createElement("span"); n.className = "note";
+  n.textContent = picked.length + " / " + q.tiles.length + " " + s.picked;
+  var clear = document.createElement("button");
+  clear.className = "btn ghost small"; clear.type = "button"; clear.textContent = s.clear;
+  clear.addEventListener("click", function(){ A[idx] = []; save(); paintQ(); });
+  row.appendChild(n); row.appendChild(clear);
+  frag.appendChild(row);
+  return frag;
+}
+
+function viewTable(q, li){
+  var keys = tableBlankKeys(q);
+  var wrap = document.createElement("div"); wrap.className = "tablewrap";
+  var tbl = document.createElement("table"); tbl.className = "rak";
+  var thead = document.createElement("tr");
+  thead.appendChild(document.createElement("th"));
+  q.cols.forEach(function(c){
+    var th = document.createElement("th"); th.textContent = c[li]; thead.appendChild(th);
+  });
+  tbl.appendChild(thead);
+  q.rows.forEach(function(r, ri){
+    var tr = document.createElement("tr");
+    var nm = document.createElement("td"); nm.className = "name"; nm.textContent = r.name[li];
+    tr.appendChild(nm);
+    r.cells.forEach(function(cell, ci){
+      var td = document.createElement("td");
+      if(cell === null){
+        var ki = keys.findIndex(function(k){ return k[0] === ri && k[1] === ci; });
+        var inp = document.createElement("input");
+        inp.type = "text"; inp.inputMode = "numeric"; inp.maxLength = 2;
+        inp.id = "tbl-" + idx + "-" + ki;
+        inp.value = A[idx][ki] || "";
+        inp.addEventListener("input", function(){
+          A[idx][ki] = inp.value.replace(/[^0-9]/g, "");
+          if(inp.value !== A[idx][ki]) inp.value = A[idx][ki];
+          save(); refreshNext();
+        });
+        td.appendChild(inp);
+      } else td.textContent = cell;
+      tr.appendChild(td);
+    });
+    tbl.appendChild(tr);
+  });
+  wrap.appendChild(tbl);
+  return wrap;
+}
+
+function viewFill(q, li){
+  var row = document.createElement("div"); row.className = "fillrow";
+  var inp = document.createElement("input");
+  inp.type = "text"; inp.inputMode = "numeric"; inp.maxLength = 6;
+  inp.id = "fill-" + idx; inp.value = A[idx] || "";
+  inp.addEventListener("input", function(){ A[idx] = inp.value; save(); refreshNext(); });
+  var u = document.createElement("span"); u.className = "unit"; u.textContent = q.unit[li];
+  row.appendChild(inp); row.appendChild(u);
+  return row;
+}
+
+function viewOpen(q, s){
+  var ta = document.createElement("textarea");
+  ta.id = "open-" + idx; ta.value = A[idx] || "";
+  ta.placeholder = s.hintOpen;
+  ta.addEventListener("input", function(){ A[idx] = ta.value; save(); refreshNext(); });
+  return ta;
+}
+
+$("btn-prev").addEventListener("click", function(){
+  if(idx > 0){ idx--; save(); paintQ(); }
+});
+$("btn-next").addEventListener("click", function(){
+  if(!answered(idx)) return;
+  if(idx < Q.length - 1){ idx++; save(); paintQ(); }
+  else finish();
+});
+
+/* ---------------- scoring ---------------- */
+function norm(x){ return String(x == null ? "" : x).trim().toLowerCase(); }
+
+function gradeOne(i){
+  var q = Q[i], v = A[i];
+  if(q.type === "mc")   return {got: v === q.c ? 1 : 0, max:1};
+  if(q.type === "fill") return {got: q.ok.some(function(a){ return norm(a) === norm(v); }) ? 1 : 0, max:1};
+  if(q.type === "table"){
+    var keys = tableBlankKeys(q), got = 0;
+    keys.forEach(function(k, n){ if(norm(v[n]) === norm(k[2])) got++; });
+    return {got:got, max:keys.length};
+  }
+  if(q.type === "order"){
+    var hits = 0;
+    q.c.forEach(function(tileIdx, pos){ if(v[pos] === tileIdx) hits++; });
+    var full = q.c.length;
+    var got = hits === full ? 2 : (hits >= Math.ceil(full * 0.7) ? 1 : 0);
+    return {got:got, max:2, hits:hits, of:full};
+  }
+  return {got:0, max:0};
+}
+function scoreAll(){
+  var total = 0, bySec = [0,0,0,0], maxSec = [0,0,0,0], wrong = [], per = [];
+  Q.forEach(function(q, i){
+    var g = gradeOne(i);
+    per.push(g);
+    total += g.got;
+    bySec[q.sec] += g.got;
+    maxSec[q.sec] += g.max;
+    if(q.type !== "open" && g.got < g.max) wrong.push(i + 1);
+  });
+  return {total:total, bySec:bySec, maxSec:maxSec, wrong:wrong, per:per};
+}
+function code(){
+  var base = who.name.toLowerCase() + "|" + who.age + "|" + JSON.stringify(A);
+  var h = 5381;
+  for(var i = 0; i < base.length; i++){ h = ((h * 33) ^ base.charCodeAt(i)) >>> 0; }
+  var s = h.toString(36).toUpperCase();
+  while(s.length < 6) s = "0" + s;
+  return s.slice(0,3) + "-" + s.slice(3,6);
+}
+
+/* ---------------- result ---------------- */
+function answerText(i){
+  var q = Q[i], v = A[i], li = L();
+  if(q.type === "mc")    return v === null ? "—" : q.opts[v][li];
+  if(q.type === "fill")  return String(v).trim() || "—";
+  if(q.type === "open")  return String(v).trim() || "—";
+  if(q.type === "order") return v.map(function(k){ return q.tiles[k][li]; }).join(" → ");
+  if(q.type === "table") return tableBlankKeys(q).map(function(k, n){
+      return q.rows[k[0]].name[li] + " " + q.cols[k[1]][li] + " = " + (v[n] || "?");
+    }).join(" · ");
+  return "";
+}
+function correctText(i){
+  var q = Q[i], li = L();
+  if(q.type === "mc")    return q.opts[q.c][li];
+  if(q.type === "fill")  return q.ok[0];
+  if(q.type === "order") return q.c.map(function(k){ return q.tiles[k][li]; }).join(" → ");
+  if(q.type === "table") return tableBlankKeys(q).map(function(k){
+      return q.rows[k[0]].name[li] + " " + q.cols[k[1]][li] + " = " + k[2];
+    }).join(" · ");
+  return "";
+}
+
+function finish(){
+  var s = t(), r = scoreAll(), li = L();
+  clearSave();
+
+  $("r-who").textContent = who.name + " · " + who.age;
+  $("r-score").textContent = r.total + " / " + MAXPTS;
+  var pct = Math.round(r.total / MAXPTS * 100);
+  var band = pct >= 90 ? 3 : pct >= 75 ? 2 : pct >= 55 ? 1 : 0;
+  $("r-pct").textContent = pct + "% " + s.pct + " · " + s.m[band];
+
+  var g = $("r-secs"); g.textContent = "";
+  SECTIONS.forEach(function(sec, i){
+    var d = document.createElement("div"); d.className = "sec";
+    var n = document.createElement("div"); n.className = "n";
+    n.textContent = sec[lang]; n.style.color = "var(" + sec.c + ")";
+    var v = document.createElement("div"); v.className = "v";
+    v.textContent = r.bySec[i] + " / " + r.maxSec[i];
+    d.appendChild(n); d.appendChild(v); g.appendChild(d);
+  });
+
+  $("r-sendhead").textContent = s.sendhead;
+  $("r-sendnote").textContent = s.sendnote;
+  $("btn-copy").textContent = s.copy;
+  $("r-revhead").textContent = s.revhead;
+  $("btn-again").textContent = s.again;
+  $("r-foot").textContent = s.rfoot;
+  $("r-toast").hidden = true;
+
+  var d = new Date(), pad = function(n){ return n < 10 ? "0" + n : "" + n; };
+  var stamp = d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()) +
+              " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+  var lines = [
+    "TAHIR ACADEMY — TEST I",
+    s.name + ": " + who.name,
+    s.age + ": " + who.age,
+    s.date + ": " + stamp,
+    s.score + ": " + r.total + "/" + MAXPTS + " (" + pct + "%)",
+    SECTIONS.map(function(sec,i){ return sec[lang] + " " + r.bySec[i] + "/" + r.maxSec[i]; }).join(" · "),
+    s.wrong + ": " + (r.wrong.length ? r.wrong.join(", ") : s.none),
+    "",
+    s.openhead
+  ];
+  Q.forEach(function(q, i){
+    if(q.type === "open"){
+      lines.push((i+1) + ". " + q[lang]);
+      lines.push("→ " + (String(A[i]).trim() || "—"));
+    }
+  });
+  lines.push("");
+  lines.push(s.code + ": " + code());
+  $("r-summary").textContent = lines.join("\n");
+
+  var rev = $("r-rev"); rev.textContent = "";
+  Q.forEach(function(q, i){
+    var gq = r.per[i];
+    var box = document.createElement("div");
+    box.className = "item" + (q.type === "open" ? " manual"
+                    : gq.got === gq.max ? " ok"
+                    : gq.got > 0 ? " part" : "");
+    var head = document.createElement("div"); head.className = "q";
+    head.textContent = (i+1) + ". " + q[lang] +
+        (q.type === "open" ? "" : "  (" + gq.got + "/" + gq.max + ")");
+    box.appendChild(head);
+    var a = document.createElement("div"); a.className = "a";
+    if(q.type === "open"){
+      a.textContent = s.tocheck + " — " + answerText(i);
+    } else if(gq.got === gq.max){
+      var b = document.createElement("b"); b.textContent = answerText(i); a.appendChild(b);
+    } else {
+      var yi = document.createElement("i");
+      yi.textContent = s.yourans + " " + answerText(i);
+      a.appendChild(yi);
+      a.appendChild(document.createElement("br"));
+      var cb = document.createElement("b");
+      cb.textContent = s.correct + " " + correctText(i);
+      a.appendChild(cb);
+    }
+    box.appendChild(a);
+    rev.appendChild(box);
+  });
+
+  show("done");
+}
+
+$("btn-copy").addEventListener("click", function(){
+  var text = $("r-summary").textContent, toast = $("r-toast");
+  function fallback(){
+    try{
+      var range = document.createRange();
+      range.selectNodeContents($("r-summary"));
+      var sel = window.getSelection();
+      sel.removeAllRanges(); sel.addRange(range);
+    }catch(e){}
+    toast.textContent = t().copyfail;
+    toast.style.color = "var(--ink-soft)";
+    toast.hidden = false;
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      toast.textContent = t().copied;
+      toast.style.color = "var(--good)";
+      toast.hidden = false;
+    }, fallback);
+  } else fallback();
+});
+
+$("btn-again").addEventListener("click", function(){
+  clearSave();
+  A = blank(); idx = 0; who = {name:"", age:""};
+  $("f-name").value = ""; $("f-age").value = "";
+  checkReady(); paintStart();
+  $("btn-resume").hidden = true;
+  show("start");
+});
+
+/* ---------------- boot ---------------- */
+A = blank();
+var saved = load();
+if(saved){
+  lang = saved.lang || "pl";
+  if(saved.who && saved.who.name){
+    $("f-name").value = saved.who.name;
+    $("f-age").value = saved.who.age || "";
+    $("btn-resume").hidden = false;
+  }
+}
+paintStart();
+checkReady();
+show("start");
+})();
+</script>
