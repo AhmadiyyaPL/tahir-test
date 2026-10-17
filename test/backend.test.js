@@ -91,6 +91,16 @@ test('grading an open answer is saved, updated and listed', () => {
   assert.equal(b.post({ action: 'grade', password: pw, sid: crypto.randomUUID(), n: 17, points: 1, comment: '' }).error, 'unknown_sid');
 });
 
+test('password can be set by hand as script property TEACHER_PASSWORD', () => {
+  const b = createBackend();
+  b.props.SUBMIT_TOKEN = 't';
+  b.props.SHEET_ID = 'x';
+  assert.equal(b.post({ action: 'list', password: 'egal' }).error, 'no_password_set');
+  b.props.TEACHER_PASSWORD = 'koran2026 ';
+  assert.equal(b.post({ action: 'list', password: ' koran2026' }).ok, true);
+  assert.equal(b.post({ action: 'list', password: 'Koran2026' }).error, 'bad_password');
+});
+
 test('too many wrong passwords lock the teacher page', () => {
   const b = fresh();
   for (let i = 0; i < 10; i++) b.post({ action: 'list', password: 'x' });

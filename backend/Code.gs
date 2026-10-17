@@ -18,7 +18,7 @@
  * Gespeichert wird nur: Vorname, Alter, Sprache, Antworten, Punkte, Zeitstempel.
  */
 
-var VERSION = '1.0';
+var VERSION = '1.1';
 var SHEET_RESULTS = 'Ergebnisse';
 var SHEET_GRADES = 'Bewertungen';
 var RESULT_HEADERS = ['Empfangen', 'ID', 'Test', 'Name', 'Alter', 'Sprache', 'Begonnen', 'Beendet',
@@ -97,7 +97,7 @@ function askPassword_() {
   var ui = SpreadsheetApp.getUi();
   var r = ui.prompt('Lehrer-Passwort festlegen', 'Mit diesem Passwort öffnest du die Lehrerseite. Mindestens 8 Zeichen.', ui.ButtonSet.OK_CANCEL);
   if (r.getSelectedButton() !== ui.Button.OK) return false;
-  var pw = r.getResponseText();
+  var pw = (r.getResponseText() || '').trim();
   if (!pw || pw.length < 8) { ui.alert('Das Passwort muss mindestens 8 Zeichen haben.'); return askPassword_(); }
   var salt = randomToken_();
   var props = PropertiesService.getScriptProperties();
@@ -199,6 +199,8 @@ function checkSubmission_(s) {
 // ------------------------------------------------------------------ teacher
 
 function withPassword_(req, fn) {
+  var props = PropertiesService.getScriptProperties();
+  if (!props.getProperty('PW_HASH') && !props.getProperty('TEACHER_PASSWORD')) return { ok: false, error: 'no_password_set' };
   var cache = CacheService.getScriptCache();
   var fails = Number(cache.get('pwfail') || 0);
   if (fails >= PW_FAIL_LIMIT) return { ok: false, error: 'locked' };
@@ -210,11 +212,19 @@ function withPassword_(req, fn) {
   return fn(req);
 }
 
+// Two ways to set the teacher password:
+//  - menu "Lehrer-Passwort ändern" (stored as salted hash PW_SALT/PW_HASH), or
+//  - by hand in the Apps Script editor: Projekteinstellungen → Skripteigenschaften →
+//    Eigenschaft TEACHER_PASSWORD (plain text, visible only to the script owner).
 function checkPassword_(pw) {
+  if (typeof pw !== 'string' || !pw.trim()) return false;
+  pw = pw.trim();
   var props = PropertiesService.getScriptProperties();
+  var plain = props.getProperty('TEACHER_PASSWORD');
+  if (plain && pw === plain.trim()) return true;
   var salt = props.getProperty('PW_SALT');
   var stored = props.getProperty('PW_HASH');
-  if (!salt || !stored || typeof pw !== 'string' || !pw) return false;
+  if (!salt || !stored) return false;
   return hash_(salt + pw) === stored;
 }
 

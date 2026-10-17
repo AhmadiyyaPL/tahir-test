@@ -50,7 +50,7 @@ function renderLogin(message) {
       e.preventDefault();
       btn.disabled = true;
       btn.textContent = 'Prüfe…';
-      await login(input.value);
+      await login(input.value.trim());
       btn.disabled = false;
       btn.textContent = 'Anmelden';
     },
@@ -66,6 +66,7 @@ function renderLogin(message) {
 
 const ERRORS = {
   bad_password: 'Falsches Passwort.',
+  no_password_set: 'Im Backend ist noch kein Lehrer-Passwort gespeichert. Siehe DEPLOY.md → „Passwort vergessen“.',
   locked: 'Zu viele Fehlversuche. Bitte 15 Minuten warten.',
   not_configured: 'Backend-Adresse fehlt in public/config.json.',
   network: 'Keine Verbindung zum Backend. Internet prüfen; ist die Web-App bereitgestellt?',

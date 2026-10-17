@@ -175,7 +175,11 @@ Code einfügen, speichern → **Bereitstellen → Bereitstellungen verwalten** �
 Die URL bleibt gleich, `config.json` muss nicht geändert werden.
 (Achtung: „Neue Bereitstellung“ würde eine **neue** URL erzeugen.)
 
-**Passwort vergessen:** Tabelle → **Tahir-Test → Lehrer-Passwort ändern**.
+**Passwort vergessen / funktioniert nicht:** Im Apps-Script-Editor links auf das **Zahnrad
+„Projekteinstellungen“** → ganz unten **„Skripteigenschaften“** → **„Skripteigenschaften
+bearbeiten“** → **„Skripteigenschaft hinzufügen“** → Eigenschaft `TEACHER_PASSWORD`,
+Wert = dein neues Passwort → **„Skripteigenschaften speichern“**. Gilt sofort, ohne neue
+Bereitstellung. (Alternativ: Tabelle → **Tahir-Test → Lehrer-Passwort ändern**.)
 
 **Lehrerseite gesperrt** („Zu viele Fehlversuche“): 15 Minuten warten.
 
